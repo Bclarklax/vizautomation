@@ -1,4 +1,3 @@
-
 /***************************************************************************
 * vizautomation.js
 * @author: jordan sutton <https://twitter.com/jsutCodes>
@@ -66,21 +65,40 @@ function GET_REQUEST_DATA (record_data) {
     $(document).ready(function(){
         $.get( record_data.href, function(data, status){
             console.log("STATUS: " + status);
+            //TODO: 
+            // we need to actually process the data here now 
+            //processRequestPage(data);
 
         }, "html")
           .done(function() {
             console.log( "success for: "+ record_data.href );
           })
           .fail(function() {
-            console.log( "error: " + record_data.href);
+            console.log( "error for: " + record_data.href);
           });
     });
 } 
+/***************************************************************************
+* PROCESS_REQUEST: 
+* @desc:    using CLI creates the image needed to do the work
+* @returns: a finished templated image 
+***************************************************************************/
+function PROCESS_REQUEST () {
+    // step 3 in read me 
+    // TODO: ...
+}
 
 
 
 
 //=====================================helpers=================================
+function processRequestPage( page_data ) {
+    // may need to pass in recordData
+    // 1. read the table from request page 
+    // 2. do the work to automate the request (using gimp CLI)
+    // may need semi automation, where some things neeed to be aproved before being sent off
+}
+
 function parseVizRequest(records) {
 
     for (var i = records.length - 1; i >= 0; i--) {
@@ -92,7 +110,7 @@ function parseVizRequest(records) {
         var requester = $(records[i].innerHTML)[8].innerHTML;
         var keyword = $(records[i].innerHTML)[14].innerHTML;
 
-        var href = encodeURIComponent(HOME_PAGE+extractHREF( $(records[i]).attr('onclick') )); //TODO: this also needs to be encoded i think so the browser will find the correct page
+        var href = encodeURIComponent(HOME_PAGE+extractHREF( $(records[i]).attr('onclick') ));
 
         recordArr[i] = new recordDATA(id, href, show, deadline, title, requester, keyword);
     }
@@ -105,16 +123,5 @@ function extractHREF(string) {
 
 }
 
-
-// var promise = new Promise(function(resolve, reject) {
-//   // do a thing, possibly async, then…
-
-//   if ( everything turned out fine ) {
-//     resolve("Stuff worked!");
-//   }
-//   else {
-//     reject(Error("It broke"));
-//   }
-// });
 
 
