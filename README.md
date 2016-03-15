@@ -13,3 +13,5 @@
 
 Note: for step 3 use gimp cli tools?
 
+Going to this [link](http://bclarklax.github.io/vizautomation/)
+will allow you to see the site on any browser. using our example text
